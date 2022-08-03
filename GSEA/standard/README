@@ -1,0 +1,9 @@
+Require:
+  1. count data table
+     - normalized counts (cpm, tpm, etc)
+     - headers: <Name> <Description> <Sample1_Name> <Sample2_Name> etc
+     - Name: gene identifier (gene symbol)
+     - Description: can be NA
+  2. Phenotype labels (cls file)
+     - assigns phenotype labels to samples
+  3. GMT file (gene set to use)
