@@ -2,7 +2,7 @@
 # conda activate tidymodels
 
 
-source("/home/groups/hoolock2/u0/bd/scripts_2020/GSEA/new_gsea_functions.R")
+source("/home/groups/hoolock2/u0/bd/scripts_2020/GSEA/preranked/new_gsea_functions.R")
 
 library(writexl)
 

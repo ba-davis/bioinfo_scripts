@@ -31,10 +31,13 @@ summarize_gsea_res <- function(inpath, my_pval="FDR.q.val", pval_cutoff=0.25, ou
   gsea_pos_res <- list()
   gsea_neg_res <- list()
   for (i in 1:length(imp_paths)) {
-    gsea_pos_res[[i]] <- read.delim(paste0(imp_paths[i], "/", list.files(imp_paths[i], pattern="^gsea_report_for_na.*xls")[2]), header=T)
-    gsea_neg_res[[i]] <- read.delim(paste0(imp_paths[i], "/", list.files(imp_paths[i], pattern="^gsea_report_for_na.*xls")[1]), header=T)
+    gsea_pos_res[[i]] <- read.delim(paste0(imp_paths[i], "/", list.files(imp_paths[i], pattern="^gsea_report_for.*xls")[1]), header=T)
+    gsea_neg_res[[i]] <- read.delim(paste0(imp_paths[i], "/", list.files(imp_paths[i], pattern="^gsea_report_for.*xls")[2]), header=T)
   }
 
+  print(paste0("pos category is ", list.files(imp_paths[i], pattern="^gsea_report_for.*xls")[1]))
+  print(paste0("neg category is ", list.files(imp_paths[i], pattern="^gsea_report_for.*xls")[2]))
+  
   # add names to each df in the list (name will be gene set)
   names(gsea_pos_res) <- gsub(inpath, "", imp_paths)
   names(gsea_pos_res) <- gsub("my_analysis.*$", "", names(gsea_pos_res))
