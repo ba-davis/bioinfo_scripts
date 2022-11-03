@@ -72,8 +72,8 @@ summarize_gsea_res <- function(inpath, my_pval="FDR.q.val", pval_cutoff=0.25, ou
   }
 
   # Combine dfs
-  gsea_pos <- bind_rows(gsea_pos_res)
-  gsea_neg <- bind_rows(gsea_neg_res)
+  gsea_pos <- bind_rows(gsea_pos_res[sapply(gsea_pos_res, function(x) dim(x)[1]) > 0])
+  gsea_neg <- bind_rows(gsea_neg_res[sapply(gsea_neg_res, function(x) dim(x)[1]) > 0])
 
   gsea_all <- rbind(gsea_pos, gsea_neg)
 
