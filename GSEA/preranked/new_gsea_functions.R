@@ -43,12 +43,23 @@ summarize_gsea_res <- function(inpath, my_pval="FDR.q.val", pval_cutoff=0.25, ou
   names(gsea_neg_res) <- gsub("my_analysis.*$", "", names(gsea_neg_res))
   names(gsea_neg_res) <- gsub("/", "", names(gsea_neg_res))
 
+  # check to see if any results have 0 rows
+  #for (i in 1:length(gsea_pos_res)) {
+  #  if (nrow(gsea_pos_res[[i]]) < 1) {
+  #    print(paste0("pos results for ", names(gsea_pos_res)[i], " has 0 entries."))
+  #  }
+  #}
+
   # add a column specifying gene set to each gsea_res
   for (i in 1:length(gsea_pos_res)) {
-    gsea_pos_res[[i]]$Gene_Set <- names(gsea_pos_res)[i]
+    if (nrow(gsea_pos_res[[i]]) > 0) {
+      gsea_pos_res[[i]]$Gene_Set <- names(gsea_pos_res)[i]
+    }
   }
   for (i in 1:length(gsea_neg_res)) {
-    gsea_neg_res[[i]]$Gene_Set <- names(gsea_neg_res)[i]
+    if (nrow(gsea_neg_res[[i]]) > 0) {
+      gsea_neg_res[[i]]$Gene_Set <- names(gsea_neg_res)[i]
+    }
   }
 
   # subset each df in gsea_pos_res based on specified pval cutoff
